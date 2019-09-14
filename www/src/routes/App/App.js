@@ -11,6 +11,16 @@ import People from './pages/People';
 import Meet from './pages/Meet';
 import Profile from './pages/Profile';
 
+import firebase from 'firebase';
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAxn-ItzWHMy9BYG2rnfofQ4EGk3T6m438",
+  authDomain: "hackthenorth-66d3f.firebaseapp.com",
+  projectId: "hackthenorth-66d3f",
+});
+
+const db = firebase.firestore();
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,7 +67,7 @@ export default function SimpleTabs() {
     console.log(newValue);
     setValue(newValue);
   }
-
+  
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -68,7 +78,7 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <People></People>
+        <People db={db}></People>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Meet></Meet>
