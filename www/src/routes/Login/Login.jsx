@@ -5,7 +5,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import firebaseConfig from '../../firebaseConfig';
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
@@ -20,8 +20,6 @@ class Login extends Component {
     } = this.props;
     return (
       <div>
-        <h1>Login</h1>
-        <a href="/app">Login Here</a>
         {
         user 
           ? <p>Hello, {user.displayName}</p>

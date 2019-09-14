@@ -10,6 +10,7 @@ import People from './pages/People';
 import Meet from './pages/Meet';
 import Profile from './pages/Profile';
 import firebase from 'firebase';
+import firebaseApp from '../Login/'
 
 const db = firebase.firestore();
 
