@@ -6,18 +6,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
 import People from './pages/People';
 import Meet from './pages/Meet';
 import Profile from './pages/Profile';
-
 import firebase from 'firebase';
-
-firebase.initializeApp({
-  apiKey: "AIzaSyAxn-ItzWHMy9BYG2rnfofQ4EGk3T6m438",
-  authDomain: "hackthenorth-66d3f.firebaseapp.com",
-  projectId: "hackthenorth-66d3f",
-});
 
 const db = firebase.firestore();
 
