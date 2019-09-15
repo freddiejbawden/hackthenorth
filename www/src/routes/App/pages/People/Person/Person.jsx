@@ -12,12 +12,10 @@ const InterestedIn = (props) => {
 
 export default class Person extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className={"person"}>
         <span>{this.props.name}</span>
         <span>{this.props.status}</span>
-        
       </div>
     )
   }

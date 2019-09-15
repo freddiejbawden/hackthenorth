@@ -25,6 +25,16 @@
 .date-month {
   font-size: 10px;
 }
+.meeting-card {
+  border: 1px solid darkgray;
+  max-width: 400px;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+.meeting-card > .button {
+  width: 100%;
+  margin: 0;
+}
 .date-day {
   font-size: 24px;
   font-weight: bold;
@@ -41,20 +51,21 @@
   font-weight: bold;
   font-size: 16px;
 }
-.meeting-container {
-display: flex;
-
-align-items: center;
-justify-items: center;
-}
-.meetings-container {
-  border: 1px solid darkgray;
+.meeting-container-outer {
   display: flex;
   flex-direction: column;
-  width: 400;
-padding: 20px;
-overflow: auto;
+  justify-content: center;
+  align-items: center;
 }
+.meeting-container-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  min-width: 400px;
+}
+
 .attendence-count-container {
   display: flex;
   flex-direction: column;
@@ -73,7 +84,10 @@ overflow: auto;
   background-color: grey;
 }
 @media only screen and (max-width: 990px) {
-  .meetings-container {
+  .meeting-container-2  {
     min-width: 0;
+  }
+  .meeting-card {
+    width: 100%;
   }
 }

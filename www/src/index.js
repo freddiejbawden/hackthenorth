@@ -4,6 +4,7 @@ import App from './routes/App';
 import Login from './routes/Login';
 import SignUp from './routes/SignUp';
 import SignUp2 from './routes/SignUp2';
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 import './index.css';

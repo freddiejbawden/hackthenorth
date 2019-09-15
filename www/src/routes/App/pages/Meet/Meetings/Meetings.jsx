@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import Button from '../../../../../Components/Button'
 import './Meetings.css'
+import { firebaseApp } from '../../../../Login'
 
 const monthDict = [
   "Jan",
@@ -16,31 +18,57 @@ const monthDict = [
   "Dec"
 ]
 
-const Meeting = (props) => {
-  var date = new Date(props.time.seconds*1000);
-  const day = date.getDate();
-  const month = monthDict[date.getMonth()];
-  const time = `${date.getHours()}:${date.getMinutes()}`
-  return (
-    <div className={'meeting-container'}>
-      <div className={'date-wrapper'}>
-        <div className={'date-container'}>
-          <span className={'date-month'}>{month}</span>
-          <span className={'date-day'}>{day}</span>
-        </div>  
-      </div>
-      <div className={'details-container'}>
-        <span>{props.name}</span>
-        <span>{props.location}, {time}</span>
-      </div>
-      <div className={'attendence-count-container'}>
-        <div className={'attendence-count-text'}>
-          {props.attendents}
+class Meeting  extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rsvped: false,
+      buttonText: "RSVP",
+    }
+  }
+  render() {
+    var date = new Date(this.props.time.seconds*1000);
+    const day = date.getDate();
+    const month = monthDict[date.getMonth()];
+    const time = `${date.getHours()}:${date.getMinutes()}`
+
+    const rsvp = async () => {
+      console.log(firebaseApp.auth().currentUser.uid )
+      this.props.db.collection("users").doc((firebaseApp.auth().currentUser.uid || "user2")).get().then(doc => {
+        const modMeetings = doc.data().meetings
+        modMeetings.push(this.props.meetingId);
+        this.props.db.collection("users").doc((firebaseApp.auth().currentUser.uid || "user2")).update({meetings: modMeetings}).then(ref => {
+          this.setState({rsvped: true,buttonText: "✓" })
+        })
+      })
+    }
+    
+    return (
+      <div className={'meeting-card'}>
+        <div className={'meeting-container-2 '}>
+          <div className={'date-wrapper'}>
+            <div className={'date-container'}>
+              <span className={'date-month'}>{month}</span>
+              <span className={'date-day'}>{day}</span>
+            </div>  
+          </div>
+          <div className={'details-container'}>
+            <span>{this.props.name}</span>
+            <span>{this.props.location}, {time}</span>
+          </div>
+          <div className={'attendence-count-container'}>
+            <div className={'attendence-count-text'}>
+              {this.props.attendents}
+            </div>
+            <span>Attending</span> 
+          </div>
         </div>
-        <span>Attending</span> 
+        
+        <Button onClick={rsvp} text={this.state.buttonText}></Button>
       </div>
-    </div>
-  )
+    )
+  }
+  
 }
 
 
@@ -54,26 +82,23 @@ export default class Meetings extends Component {
   }
   async componentDidMount() {
     if (this.state.loading) {
+      const meetings = [];
       await this.props.db.collection("meetings").get().then((querySnapshot) => {
-        const meetings = [];
         querySnapshot.forEach((doc) => {
-        console.log(doc.id)
-        if (this.props.meetings.includes(doc.id)) {
           const meetingData = doc.data();
-          console.log(meetingData.time);
+          console.log(meetingData)
           meetings.push(
-            <Meeting key={doc.id} {...meetingData}></Meeting>
+            <Meeting db={this.props.db} key={doc.id} {...meetingData} meetingId={doc.id}></Meeting>
           );
-        }          
-       });
-       this.setState({meetings, loading:false})
+        });
+        this.setState({meetings:meetings, loading:false})
      });
    } 
   }
   render() {
+    console.log(this.state.meetings)
     return (
-      <div className={'meetings-container'}>
-        <span className={'meeting-title'}>Marked As Attending</span>
+      <div className={'meeting-container-outer'}>
         {this.state.meetings}
       </div>
     )

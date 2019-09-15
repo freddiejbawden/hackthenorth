@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Person from './Person';
 import './People.css';
+import { firebaseApp } from '../../../Login';
+import Summary from './Summary/Summary';
 
 export default class People extends Component {
   constructor(props) {
@@ -13,12 +15,21 @@ export default class People extends Component {
     //TODO: add  a check to see if there has been more users added
     if (this.state.people.length === 0) {
       await this.props.db.collection("users").get().then((querySnapshot) => {
-        const people = []
+        const people = {}
         querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-            people.push(doc)
+            people[doc.id] = doc.data()
         });
-        this.setState({people})
+        const id = firebaseApp.auth().currentUser.uid;
+        fetch(`https://us-central1-hackthenorth-66d3f.cloudfunctions.net/function-1?user=${id}&matches=True`)
+        .then((resp) => {
+          resp.json().then(data => {
+            const sortedPersons = []
+            data.forEach((p) => {
+              sortedPersons.push(<Summary key={p} {...people[p]}></Summary>);
+            });
+            this.setState({people: sortedPersons})
+          })
+        })
       });
     }
   }
@@ -28,14 +39,11 @@ export default class People extends Component {
       // TODO:  add spinner
       content =  "loading..."
     } else {
-      content = [];
-      this.state.people.forEach((person) => {
-        content.push(<Person key={person.id} {...person.data()}></Person>);
-      });
     }
     return (
       <div className={"page-container"}>
-        {content}
+        {this.state.people}
+        <h3>Waiting on more hackers joining the event, when they do we'll update this list</h3>
       </div>
     )
   }

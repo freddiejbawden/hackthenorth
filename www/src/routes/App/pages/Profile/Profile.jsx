@@ -17,16 +17,16 @@ export default class Profile extends Component {
         let content;
         querySnapshot.forEach((doc) => {
           const user = doc.data();
-         if (user.name === this.props.user) {
+          console.log(this.props.name)
+         if (doc.id === this.props.user) {
           content = (
             <div className={'profile-container'}>
             <Summary {...user}></Summary>
             <div className={'message-button'}>Message</div> 
-            <Interests interests={Object.keys(user.interests)} needs={user.needs}></Interests>
+            <Interests interests={user.interests} needs={user.needs}></Interests>
             <Meetings db={this.props.db} meetings={user.meetings}></Meetings>
             </div>
           );
-          console.log(user)
           this.setState({content, loading:false})
          }          
         });

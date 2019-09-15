@@ -32,7 +32,7 @@ class Login extends Component {
     
     return (
       <div className={'login-container'}>
-        <h1>Name</h1>
+        <h1>Matchbox</h1>
         <Button onClick={signupFunction} text={"Sign Up"} color={"red"}></Button>
         <Button onClick={signinFunction} text={"Login"} color={"blue"}></Button>
       </div>

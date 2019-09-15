@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Meetings from './Meetings';
 export default class Meet extends Component {
   constructor(props) {
     super(props);
@@ -10,9 +10,7 @@ export default class Meet extends Component {
   }
   render() {
     return (
-      <div>
-        
-      </div> 
+        <Meetings db={this.props.db}></Meetings>
     )
   }
 }

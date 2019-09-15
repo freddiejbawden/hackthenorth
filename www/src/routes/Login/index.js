@@ -1,3 +1,5 @@
-import Login from './Login';
+import Login, { firebaseApp } from './Login';
+
 
 export default Login;
+export {firebaseApp}

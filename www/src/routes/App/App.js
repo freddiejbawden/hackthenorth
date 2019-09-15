@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +10,11 @@ import People from './pages/People';
 import Meet from './pages/Meet';
 import Profile from './pages/Profile';
 import { firebaseApp } from '../Login/Login';
+
+function useForceUpdate(){
+  const [value, set] = useState(true); //boolean state
+  return () => set(!value); // toggle the state to force render
+}
 
 const db = firebaseApp.firestore();
 
@@ -53,9 +58,7 @@ const useStyles = makeStyles(theme => ({
 export default function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(2);
-
   function handleChange(event, newValue) {
-    console.log(newValue);
     setValue(newValue);
   }
   
@@ -72,10 +75,10 @@ export default function SimpleTabs() {
         <People db={db}></People>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Meet></Meet>
+        <Meet db={db}></Meet>
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <Profile user={"Freddie"} db={db}></Profile>
+       <Profile user={firebaseApp.auth().currentUser.uid} db={db}></Profile>
       </TabPanel>
     </div>
   );
