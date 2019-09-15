@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
-import './Person.css';
+import './Person.scss';
+
+const InterestedIn = (props) => {
+  props.interests.slice(0,3);
+  return (
+    <div>Interests:
+      <span></span>
+    </div>
+  )
+}
 
 export default class Person extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="person">
-        <p>{this.props.name}</p>
-        <p>{this.props.age}</p>
-        <p>{this.props.pronouns}</p>
+      <div className={"person"}>
+        <span>{this.props.name}</span>
+        <span>{this.props.status}</span>
+        
       </div>
     )
   }

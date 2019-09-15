@@ -5,6 +5,9 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import firebaseConfig from '../../firebaseConfig';
 import { withRouter } from "react-router";
+import './Login.scss';
+import Button from '../../Components/Button';
+
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 const providers = {
@@ -18,21 +21,20 @@ class Login extends Component {
       signOut,
       signInWithGoogle,
     } = this.props;
-    if (user) {
+    const signupFunction = async () => {
+      await signInWithGoogle();
+      this.props.history.push("/signup");
+    }
+    const signinFunction = async () => {
+      await signInWithGoogle();
       this.props.history.push("/app");
     }
+    
     return (
-      <div>
-        {
-        user 
-          ? <p>Hello, {user.displayName}</p>
-          : <p>Please sign in.</p>
-        }
-        {
-          user
-            ? <button onClick={signOut}>Sign out</button>
-            : <button onClick={signInWithGoogle}>Sign in with Google</button>
-        }
+      <div className={'login-container'}>
+        <h1>Name</h1>
+        <Button onClick={signupFunction} text={"Sign Up"} color={"red"}></Button>
+        <Button onClick={signinFunction} text={"Login"} color={"blue"}></Button>
       </div>
     )
   }

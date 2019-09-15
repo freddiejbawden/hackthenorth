@@ -22,7 +22,8 @@ export default class Profile extends Component {
             <div className={'profile-container'}>
             <Summary {...user}></Summary>
             <div className={'message-button'}>Message</div> 
-            <Interests interests={Object.keys(user.stats)} needs={user.needs}></Interests>
+            <Interests interests={Object.keys(user.interests)} needs={user.needs}></Interests>
+            <Meetings db={this.props.db} meetings={user.meetings}></Meetings>
             </div>
           );
           console.log(user)
