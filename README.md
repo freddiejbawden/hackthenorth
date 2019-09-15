@@ -1,5 +1,5 @@
 # matchbox
-
+_Built during HackTheNorth 2019 13th - 15th September_
 ## Inspiration
 
 One of our teammates went to the team formation workshop on Friday. This was one of the ideas he pitched - to have an app that would support hackers in finding likeminded developers before the hackathon starts. We wanted to have a product that would be deeply integrated with Devpost and Github profiles to provide as much useful information as possible.
