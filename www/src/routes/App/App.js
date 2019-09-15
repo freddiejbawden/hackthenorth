@@ -9,11 +9,9 @@ import Box from '@material-ui/core/Box';
 import People from './pages/People';
 import Meet from './pages/Meet';
 import Profile from './pages/Profile';
-import firebase from 'firebase';
-import firebaseApp from '../Login/'
+import { firebaseApp } from '../Login/Login';
 
-const db = firebase.firestore();
-
+const db = firebaseApp.firestore();
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(2);
 
   function handleChange(event, newValue) {
     console.log(newValue);
@@ -77,7 +75,7 @@ export default function SimpleTabs() {
         <Meet></Meet>
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <Profile></Profile>
+       <Profile user={"Freddie"} db={db}></Profile>
       </TabPanel>
     </div>
   );

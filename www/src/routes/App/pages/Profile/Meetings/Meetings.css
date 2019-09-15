@@ -1,0 +1,79 @@
+.date-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  justify-content: center;
+}
+.meeting-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.date-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+}
+.date-container  * {
+  text-align: center;
+}
+.date-month {
+  font-size: 10px;
+}
+.date-day {
+  font-size: 24px;
+  font-weight: bold;
+}
+.details-container {
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: center;
+  text-align: left;
+}
+.details-container :nth-child(1) {
+  font-weight: bold;
+  font-size: 16px;
+}
+.meeting-container {
+display: flex;
+
+align-items: center;
+justify-items: center;
+}
+.meetings-container {
+  border: 1px solid darkgray;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+padding: 20px;
+overflow: auto;
+}
+.attendence-count-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+}
+.attendence-count-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: grey;
+}
+@media only screen and (max-width: 990px) {
+  .meetings-container {
+    min-width: 0;
+  }
+}

@@ -1,0 +1,45 @@
+.profile-image-container {
+ height: 100px;
+ max-height: 300px;
+ min-width:100px;
+ width: auto;
+ position: relative;
+}
+.profile-image {
+  width: 100%;
+  height: 100%;
+  background-color: aquamarine;
+  border-radius: 50px;
+}
+.add-button {
+  position: absolute;
+
+  left: 0; bottom: 0;
+
+  height: 40%;
+  width: 40%;
+  border: 0 solid black;
+  border-radius: 25px;
+  background-color: red;
+}
+.details-container {
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  margin-left: 25px;
+  justify-content: center;
+  text-align: left;
+}
+.details-container :nth-child(1) {
+  font-weight: bold;
+  font-size: 24px;
+}
+.summary-container {
+display: flex;
+min-width: 400px;
+}
+@media only screen and (max-width: 990px) {
+  .summary-container {
+    min-width: 0;
+  }
+}

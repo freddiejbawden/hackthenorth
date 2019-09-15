@@ -1,0 +1,24 @@
+.profile-container {
+  width: 400px;
+}
+.message-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: 1px solid grey;
+  margin-top: 25px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+.profile-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 990px) {
+  .profile-container {
+    min-width: 0;
+  }
+}

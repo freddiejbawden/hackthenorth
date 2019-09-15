@@ -1,0 +1,16 @@
+.interests-container {
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+.interest-text  {
+  background-color: #d3d3d3;
+  margin-right: 1rem;
+}
+.interests-container > span {
+  font-weight: bold;
+}
+.interests-container > div {
+  margin-bottom: 25px;
+}

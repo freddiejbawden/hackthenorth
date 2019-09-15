@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import firebaseConfig from '../../firebaseConfig';
-
+import { withRouter } from "react-router";
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 const providers = {
@@ -18,6 +18,9 @@ class Login extends Component {
       signOut,
       signInWithGoogle,
     } = this.props;
+    if (user) {
+      this.props.history.push("/app");
+    }
     return (
       <div>
         {
@@ -35,7 +38,8 @@ class Login extends Component {
   }
 }
 
-export default withFirebaseAuth({
+const fb = withFirebaseAuth({
   providers,
   firebaseAppAuth,
 })(Login);
+export default withRouter(fb);
