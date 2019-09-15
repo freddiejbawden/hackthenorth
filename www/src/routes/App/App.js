@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,11 +6,17 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
 import People from './pages/People';
 import Meet from './pages/Meet';
 import Profile from './pages/Profile';
+import { firebaseApp } from '../Login/Login';
 
+function useForceUpdate(){
+  const [value, set] = useState(true); //boolean state
+  return () => set(!value); // toggle the state to force render
+}
+
+const db = firebaseApp.firestore();
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,13 +57,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleTabs() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = React.useState(2);
   function handleChange(event, newValue) {
-    console.log(newValue);
     setValue(newValue);
   }
-
+  
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -68,13 +72,13 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <People></People>
+        <People db={db}></People>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Meet></Meet>
+        <Meet db={db}></Meet>
       </TabPanel>
       <TabPanel value={value} index={2}>
-       <Profile></Profile>
+       <Profile user={firebaseApp.auth().currentUser.uid} db={db}></Profile>
       </TabPanel>
     </div>
   );
