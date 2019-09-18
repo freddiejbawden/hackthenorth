@@ -8,7 +8,7 @@ export default class Summary extends Component {
       interests += (i + ", ")
     })
     return (
-      <div className={'summary-container'}>
+      <div className={'summary-container-2'}>
         <div className={'profile-image-container'}>
           <img src="https://source.unsplash.com/random/200x200" className={'profile-image'}></img>
         </div>

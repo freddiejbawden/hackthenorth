@@ -1,5 +1,5 @@
-.profile-container {
-  width: 400px;
+.profile-container::after {
+  max-width: 400px;
 }
 .message-button {
   display: flex;

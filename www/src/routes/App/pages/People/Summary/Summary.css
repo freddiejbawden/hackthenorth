@@ -34,11 +34,15 @@
   font-weight: bold;
   font-size: 24px;
 }
-.summary-container {
+.summary-container-2 {
   padding: 20px;
   border: 1px solid darkgray;
   border-radius: 5px;
   margin-bottom: 30px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  
 }
 .page-container {
   display: flex;
@@ -47,7 +51,7 @@
   flex-direction: column;
 }
 @media only screen and (max-width: 990px) {
-  .summary-container {
+  .summary-container-2 {
     min-width: 0;
   }
 }

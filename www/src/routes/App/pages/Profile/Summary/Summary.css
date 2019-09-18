@@ -1,7 +1,7 @@
 .profile-image-container {
  height: 100px;
  max-height: 300px;
- min-width:100px;
+ max-width:100px;
  width: auto;
  position: relative;
 }
@@ -37,6 +37,8 @@
 .summary-container {
 display: flex;
 min-width: 400px;
+border: 1px solid darkgray;
+padding: 20px;
 }
 @media only screen and (max-width: 990px) {
   .summary-container {

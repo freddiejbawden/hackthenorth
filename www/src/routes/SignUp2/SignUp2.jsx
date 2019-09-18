@@ -28,6 +28,8 @@ class SignUp2 extends Component {
               db.collection("users").doc(firebaseApp.auth().currentUser.uid).set(
                 {
                   stats,
+                  interests: data.skills,
+                  meetings: [],
                   ...doc.data()
                 }
               ).then((ref) => {
